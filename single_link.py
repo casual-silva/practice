@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 # !/usr/bin/env python
 
+
 '''
 基于python实现的单向链表操作
 '''
@@ -114,8 +115,8 @@ class SingleLinkList(object):
 
 if __name__ == '__main__':
     pass
-    # a = [i for i in range(10, 50, 3)]
+    a = [i for i in range(10, 50, 3)]
     # link = Linklist()
-    # link.init_links(a)
-    # print link.getlength()
+    link.init_links(a)
+    print link.getlength()
     # print link.show_links()
