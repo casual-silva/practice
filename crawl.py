@@ -657,3 +657,16 @@ def main():
 
 if __name__ == '__main__':
     main()
+# 可以用另一种方式启动Scrapyxiangmu
+'''
+一;
+在项目根目录下创建run.py文件
+    from scrapy import cmdline
+    cmdline.execute('scrapy crawl duke --nolog'.split())  --优点解耦, 管理拓展比较灵活
+
+二;
+    直接在该文件下创建__main__方法
+    if __name__ == '__main__':
+        from scrapy import cmdline
+        cmdline.execute('scrapy crawl duke'.split())    --优点, 管理集中,简单.
+'''
