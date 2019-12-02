@@ -6,7 +6,7 @@ import threading
 import time
 
 # 参数times用来模拟网络请求的时间
-def get_html(times, func):
+def get_html(times, func='default'):
     time.sleep(times)
     print("func: {0} get page {1} s finished".format(func, times))
     return times
@@ -14,17 +14,23 @@ def get_html(times, func):
 time_list = [2,3,4,2,1,6,4,5,1]
 executor = ThreadPoolExecutor(max_workers=10)
 # 通过submit函数提交执行的函数到线程池中，submit函数立即返回，不阻塞
+# wait ------------------------------------------
 a = time.time()
 task_list = [executor.submit(get_html, i, 'submit') for i in time_list]
+print('*'*100)
 wait(task_list)
 print(int(time.time()-a), 12123)
-
+# as_completed -----------------------------------
 a = time.time()
 task_list = [executor.submit(get_html, i, 'submit') for i in time_list]
 for task in as_completed(task_list):
     task.done()
 print(int(time.time()-a), 12123)
 
+# map ----------------------------------- map方法不会进行join阻塞 有一定局限性
+a = time.time()
+executor.map(get_html, time_list)
+print(int(time.time()-a), 12123)
 # a = time.time()
 # task_list2 = []
 # for i in time_list:
