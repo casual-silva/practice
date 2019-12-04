@@ -46,5 +46,26 @@ print(int(time.time()-a), 12123)
 #
 # print(int(time.time()-a), 12123)
 
-# --------------------------------------------
+# ------------异常处理-----------------
 
+import traceback
+
+# 参数times用来模拟网络请求的时间
+def time_block(times):
+    '''执行阻塞'''
+    print("time sleep {0} sec".format(times))
+    time.sleep(times)
+    if times // 2:
+        return times / 0
+    return times
+
+executor = ThreadPoolExecutor(max_workers=2)
+time_list = [1,2,5,6,2,2,3]
+task_list = [executor.submit(time_block, i) for i in time_list]
+for task in as_completed(task_list):
+    try:
+        print(task.result())
+    except Exception as e:
+        print(traceback.print_exc(e))
+        # print('捕获异常: {0}'.format(e))
+print('任务完成')
