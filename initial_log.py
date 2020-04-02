@@ -41,5 +41,12 @@ if __name__ == '__main__':
 
 
 
-
+# ------------------------------------------
+import logging
+DLOG = logging.getLogger("Digikey_API")
+DLOG.setLevel(logging.DEBUG)
+fmt = logging.Formatter('%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s', '%Y-%m-%d %H:%M:%S')
+s_handler = logging.StreamHandler()
+s_handler.setFormatter(fmt)
+DLOG.addHandler(s_handler)
 # sss
